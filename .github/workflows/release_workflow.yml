@@ -65,4 +65,4 @@ jobs:
           draft: false
           prerelease: false
         env:
-          GITHUB_TOKEN: ${{ secrets.GIHUB_TOKEN2 }}  # Usando o token correto como variável de ambiente
+          GITHUB_TOKEN: ${{ secrets.GIHUB_TOKEN }}  # Usando o token correto como variável de ambiente
