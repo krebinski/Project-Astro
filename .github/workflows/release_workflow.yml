@@ -35,16 +35,22 @@ jobs:
               ],
               "max_tokens": 500
             }' > ai_release_notes.json
+
       - name: Debug AI response
         run: |
           cat ai_release_notes.json  # Verifica o conteúdo do arquivo JSON gerado
+          jq '.' ai_release_notes.json  # Exibe o JSON de forma legível no log
+
       - name: Extract Release Notes
         id: extract_notes
         run: |
           RELEASE_NOTES=$(cat ai_release_notes.json | jq -r '.choices[0].message.content')
           echo "notes=$RELEASE_NOTES" >> $GITHUB_ENV
+
       - name: Check extracted notes
-        run: echo "Release Notes:"
+        run: |
+          echo "Release Notes: ${{ env.notes }}"  # Verifica o valor extraído
+
       - name: Create GitHub Release
         uses: actions/create-release@v1
         env:
