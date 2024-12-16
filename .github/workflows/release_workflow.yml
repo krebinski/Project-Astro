@@ -1,5 +1,9 @@
 name: Release Workflow
 
+permissions:
+  contents: write  # Permissão para criar releases e editar conteúdo
+  issues: write    # Permissão para criar issues, se necessário
+
 on:
   push:
     branches:
@@ -31,24 +35,20 @@ jobs:
               ],
               "max_tokens": 500
             }' > ai_release_notes.json
-
       - name: Debug AI response
         run: |
           cat ai_release_notes.json  # Verifica o conteúdo do arquivo JSON gerado
-
       - name: Extract Release Notes
         id: extract_notes
         run: |
           RELEASE_NOTES=$(cat ai_release_notes.json | jq -r '.choices[0].message.content')
           echo "notes=$RELEASE_NOTES" >> $GITHUB_ENV
-
       - name: Check extracted notes
-        run: echo `Release Notes`
-
+        run: echo "Release Notes: ${{ env.notes }}"
       - name: Create GitHub Release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # Usando um token de acesso pessoal (PAT) se necessário
         with:
           tag_name: ${{ github.ref_name }}
           release_name: Release ${{ github.ref_name }}
