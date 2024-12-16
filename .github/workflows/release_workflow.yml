@@ -64,4 +64,4 @@ jobs:
           body: ${{ env.notes }}
           draft: false
           prerelease: false
-          token: ${{ secrets.GIHUB_TOKEN2 }}  # Usando o token correto para autenticação
+          token: ${{ secrets.GIHUB_TOKEN2 }}  # Aqui está a mudança
