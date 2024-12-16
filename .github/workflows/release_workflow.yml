@@ -17,7 +17,6 @@ jobs:
   create-release:
     name: Create GitHub Release
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -57,14 +56,13 @@ jobs:
         run: |
           echo "Release Notes: ${{ env.notes }}"  # Verifica o valor extraído
 
-      - name: Create GitHub Release with versioning
+      - name: Create GitHub Release
         uses: actions/create-release@v1
-        env:
-           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
-          # Usando a tag original com o número da versão/build
-          tag_name: ${{ github.ref_name }}-${{ github.run_number }}  # Número da build como sufixo
-          release_name: Release ${{ github.ref_name }}-${{ github.run_number }}  # Nome com versão e build
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
           body: ${{ env.notes }}
           draft: false
           prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
