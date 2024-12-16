@@ -64,4 +64,5 @@ jobs:
           body: ${{ env.notes }}
           draft: false
           prerelease: false
-          token: ${{ secrets.GH_TOKEN }}  # Passando o token diretamente aqui
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # O token é passado como variável de ambiente
