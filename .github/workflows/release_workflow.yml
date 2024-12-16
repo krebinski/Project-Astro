@@ -45,6 +45,7 @@ jobs:
         id: extract_notes
         run: |
           RELEASE_NOTES=$(cat ai_release_notes.json | jq -r '.choices[0].message.content')
+          # Se a resposta for nula ou vazia, utilizamos uma mensagem padrão
           if [ "$RELEASE_NOTES" == "null" ] || [ -z "$RELEASE_NOTES" ]; then
             echo "Release notes are empty, using default message."
             RELEASE_NOTES="No release notes generated."
