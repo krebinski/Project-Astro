@@ -6,6 +6,7 @@ on:
       - main
     tags:
       - '*'
+  workflow_dispatch:  # Adicione esta linha para permitir execução manual via CLI
 
 jobs:
   create-release:
