@@ -3,7 +3,7 @@ name: Release Workflow
 on:
   push:
     branches:
-      - main
+      - master
     tags:
       - '*'
   workflow_dispatch:  # Isso permite a execução manual do workflow
