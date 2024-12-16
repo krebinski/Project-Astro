@@ -3,10 +3,10 @@ name: Release Workflow
 on:
   push:
     branches:
-      - master
+      - main
     tags:
       - '*'
-  workflow_dispatch:  # Isso permite a execução manual do workflow
+  workflow_dispatch:
 
 jobs:
   create-release:
@@ -31,11 +31,20 @@ jobs:
               ],
               "max_tokens": 500
             }' > ai_release_notes.json
+
+      - name: Debug AI response
+        run: |
+          cat ai_release_notes.json  # Verifica o conteúdo do arquivo JSON gerado
+
       - name: Extract Release Notes
         id: extract_notes
         run: |
           RELEASE_NOTES=$(cat ai_release_notes.json | jq -r '.choices[0].message.content')
           echo "notes=$RELEASE_NOTES" >> $GITHUB_ENV
+
+      - name: Check extracted notes
+        run: echo "Release Notes: ${{ env.notes }}"  # Verifica se a variável 'notes' está correta
+
       - name: Create GitHub Release
         uses: actions/create-release@v1
         env:
