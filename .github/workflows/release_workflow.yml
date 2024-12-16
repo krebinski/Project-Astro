@@ -6,6 +6,7 @@ on:
       - main
     tags:
       - '*'
+  workflow_dispatch:  # Isso permite a execução manual do workflow
 
 jobs:
   create-release:
