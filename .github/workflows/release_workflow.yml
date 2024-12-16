@@ -1,3 +1,13 @@
+name: Release Workflow
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+
+jobs:
   create-release:
     name: Create GitHub Release
     needs: build-and-release
@@ -21,13 +31,11 @@
               ],
               "max_tokens": 500
             }' > ai_release_notes.json
-
       - name: Extract Release Notes
         id: extract_notes
         run: |
           RELEASE_NOTES=$(cat ai_release_notes.json | jq -r '.choices[0].message.content')
           echo "notes=$RELEASE_NOTES" >> $GITHUB_ENV
-
       - name: Create GitHub Release
         uses: actions/create-release@v1
         env:
