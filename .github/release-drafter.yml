@@ -51,4 +51,7 @@ template: |
   - Be sure to update dependencies to stay compatible with this release.
   - Report issues or suggestions via [GitHub Issues](https://github.com/your-repo/issues).
 
-version-resolver: "auto"
+version-resolver:
+  major: "^major"
+  minor: "^minor"
+  patch: "^patch"
