@@ -65,4 +65,4 @@ jobs:
           draft: false
           prerelease: false
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # O token é passado como variável de ambiente
+          GITHUB_TOKEN: ${{ secrets.GIHUB_TOKEN }}  # Corrigido para GIHUB_TOKEN
