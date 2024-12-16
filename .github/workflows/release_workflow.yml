@@ -44,7 +44,7 @@ jobs:
           RELEASE_NOTES=$(cat ai_release_notes.json | jq -r '.choices[0].message.content')
           echo "notes=$RELEASE_NOTES" >> $GITHUB_ENV
       - name: Check extracted notes
-        run: echo "Release Notes: ${{ env.notes }}"
+        run: echo "Release Notes:"
       - name: Create GitHub Release
         uses: actions/create-release@v1
         env:
