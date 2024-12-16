@@ -64,5 +64,4 @@ jobs:
           body: ${{ env.notes }}
           draft: false
           prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # Usando o token correto para autenticação
+          token: ${{ secrets.GH_TOKEN }}  # Passando o token diretamente aqui
