@@ -3,6 +3,7 @@ name: Release Workflow
 permissions:
   contents: write  # Permissão para criar releases e editar conteúdo
   issues: write    # Permissão para criar issues, se necessário
+  pull-requests: write  # Permite acessar PRs, se necessário
 
 on:
   push:
@@ -59,7 +60,7 @@ jobs:
       - name: Create GitHub Release with versioning
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Usando o token gerado pelo GitHub Actions
+           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
           # Usando a tag original com o número da versão/build
           tag_name: ${{ github.ref_name }}-${{ github.run_number }}  # Número da build como sufixo
