@@ -3,10 +3,15 @@ name: Release Workflow
 on:
   push:
     branches:
-      - main
+      - master
     tags:
       - '*'
-  workflow_dispatch:  # Adicione esta linha para permitir execução manual via CLI
+  workflow_dispatch:  # Esta linha permite disparar o workflow manualmente
+    inputs:  # Se você quiser passar parâmetros específicos, pode definir aqui
+      example_input:
+        description: 'Um exemplo de input para o workflow'
+        required: false
+        default: 'default_value'
 
 jobs:
   create-release:
