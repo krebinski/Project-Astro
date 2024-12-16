@@ -1,53 +1,78 @@
-name-template: "🚀 Release ${{nextRelease.version}}"
-tag-template: "v${{nextRelease.version}}"
-categories:
-  - title: "✨ Features"
-    labels:
-      - "feature"
-      - "enhancement"
-      - "new-feature"
-  - title: "🐛 Bug Fixes"
-    labels:
-      - "bug"
-      - "fix"
-      - "hotfix"
-  - title: "🛠 Improvements & Refactors"
-    labels:
-      - "improvement"
-      - "refactor"
-      - "optimization"
-  - title: "📚 Documentation"
-    labels:
-      - "documentation"
-      - "docs"
-  - title: "🚧 Miscellaneous"
-    labels:
-      - "chore"
-      - "other"
-      - "misc"
-change-template: "- ${{change.title}} ([#${{change.number}}](${{change.url}}) by @${{change.author.login}})"
-template: |
-  # 📦 New Release: ${{nextRelease.version}}
+name: Release Drafter
 
-  ## Overview
-  This release introduces the following changes:
+on:
+  push:
+    tags:
+      - 'v*' # Aciona quando uma tag começando com 'v' é criada (ex.: v1.0.0)
+  workflow_dispatch: # Permite executar manualmente pelo GitHub Actions
 
-  ${{CHANGELOG}}
+jobs:
+  update-release-draft:
+    runs-on: ubuntu-latest
 
-  ## Highlights
-  - **Features**: A range of new functionalities and enhancements.
-  - **Fixes**: Bugs identified and resolved for improved stability.
-  - **Improvements**: Codebase optimizations and refactoring for better performance.
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-  ## Changes by Category
-  ${{CHANGELOG}}
+      - name: Run Release Drafter
+        uses: release-drafter/release-drafter@v5
+        with:
+          config-name: release-drafter.yml # Nome do arquivo de configuração
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  ## Contributors
-  A huge thank you to the amazing contributors who made this release possible:  
-  ${{CONTRIBUTORS}}
+config:
+  name-template: "🚀 Release ${{nextRelease.version}}"
+  tag-template: "v${{nextRelease.version}}"
 
-  ## Additional Notes
-  - Be sure to update dependencies to stay compatible with this release.
-  - Report issues or suggestions via [GitHub Issues](https://github.com/your-repo/issues).
+  categories:
+    - title: "✨ Features"
+      labels:
+        - "feature"
+        - "enhancement"
+        - "new-feature"
+    - title: "🐛 Bug Fixes"
+      labels:
+        - "bug"
+        - "fix"
+        - "hotfix"
+    - title: "🛠 Improvements & Refactors"
+      labels:
+        - "improvement"
+        - "refactor"
+        - "optimization"
+    - title: "📚 Documentation"
+      labels:
+        - "documentation"
+        - "docs"
+    - title: "🚧 Miscellaneous"
+      labels:
+        - "chore"
+        - "other"
+        - "misc"
 
-version-resolver: "auto"
+  change-template: "- ${{change.title}} ([#${{change.number}}](${{change.url}}) by @${{change.author.login}})"
+  template: |
+    # 📦 New Release: ${{nextRelease.version}}
+
+    ## Overview
+    This release introduces the following changes:
+    ${{CHANGELOG}}
+
+    ## Highlights
+    - **Features**: A range of new functionalities and enhancements.
+    - **Fixes**: Bugs identified and resolved for improved stability.
+    - **Improvements**: Codebase optimizations and refactoring for better performance.
+
+    ## Changes by Category
+    ${{CHANGELOG}}
+
+    ## Contributors
+    A huge thank you to the amazing contributors who made this release possible:  
+    ${{CONTRIBUTORS}}
+
+    ## Additional Notes
+    - Be sure to update dependencies to stay compatible with this release.
+    - Report issues or suggestions via [GitHub Issues](https://github.com/your-repo/issues).
+
+  version-resolver: "auto"
