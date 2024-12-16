@@ -5,3 +5,9 @@ change-template: '- $title @$author' # Como cada commit será apresentado nas re
 versioning-strategy: increase # Estratégia para aumentar a versão automaticamente
 changelog-generator:
   commit-message-regexp: '^.*$' # Gera release notes de todos os commits
+
+# Template para a criação das notas de lançamento
+template: |
+  ## $release_title
+
+  $changes
