@@ -1,0 +1,41 @@
+{
+    "name": "@astro/typescript-config",
+    "version": "6.0.0",
+    "description": "Astro TypeScript configuration",
+    "exports": {
+     "./base": "./base.json"
+    },
+    "type": "module",
+    "scripts": {
+     "format": "prettier . --write --cache --ignore-unknown",
+     "format:check": "prettier . --check --cache",
+     "lint": "eslint .",
+     "lint:fix": "eslint . --fix"
+    },
+    "dependencies": {
+     "tsx": "4.19.2",
+     "typescript": "5.7.2",
+     "@types/node": "22.10.2"
+    },
+    "engines": {
+     "node": ">=20"
+    },
+    "repository": {
+     "type": "git",
+     "url": "git+https://github.com/krebinski/Project-Astro.git/majo.exe.git",
+     "directory": "packages/typescript-config"
+    },
+    "keywords": [
+     "typescript",
+     "config",
+     "astro"
+    ],
+    "author": "Igor Kowalczyk",
+    "license": "MIT",
+    "bugs": {
+     "url": "https://github.com/krebinski/Project-Astro.git/majo.exe/issues"
+    },
+    "homepage": "https://github.com/krebinski/Project-Astro.git/majo.exe#readme",
+    "packageManager": "pnpm@9.15.0"
+   }
+   

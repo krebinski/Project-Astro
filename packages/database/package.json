@@ -1,0 +1,63 @@
+{
+    "name": "@astro/database",
+    "version": "6.0.0",
+    "description": "AstroBot database",
+    "type": "module",
+    "exports": {
+        ".": "./src/client.ts",
+        "./edge": "./src/edge.ts",
+        "./redis": "./src/redis.ts"
+    },
+    "scripts": {
+        "prisma:generate": "prisma generate",
+        "prisma:migrate": "prisma migrate dev",
+        "prisma:format": "prisma format",
+        "prisma:push": "prisma db push",
+        "prisma:seed": "prisma db seed",
+        "format": "prettier . --write --cache --ignore-unknown --plugin=prettier-plugin-prisma",
+        "format:check": "prettier . --check --cache",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "prebuild": "pnpm run prisma:generate",
+        "studio": "prisma studio"
+    },
+    "dependencies": {
+        "@astro/config": "workspace:*",
+        "@astro/typescript-config": "workspace:*",
+        "@neondatabase/serverless": "0.10.4",
+        "@prisma/adapter-neon": "6.0.1",
+        "@prisma/client": "6.0.1",
+        "chalk": "5.3.0",
+        "ioredis": "5.4.1",
+        "prisma": "6.0.1",
+        "prisma-redis-middleware": "4.8.0",
+        "ws": "8.18.0"
+    },
+    "devDependencies": {
+        "@types/ws": "8.5.13",
+        "prettier-plugin-prisma": "5.0.0"
+    },
+    "engines": {
+        "node": ">=20"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/krebinski/Project-Astro.git",
+        "directory": "packages/database"
+    },
+    "keywords": [
+        "primsa",
+        "database",
+        "orm",
+        "sql",
+        "postgresql",
+        "mysql"
+    ],
+    "author": "krebinkkj",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/krebinski/Project-Astro/issues"
+    },
+    "homepage": "https://github.com/krebinski/Project-Astro",
+    "packageManager": "pnpm@9.15.0"
+}
