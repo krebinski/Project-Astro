@@ -64,4 +64,5 @@ jobs:
           body: ${{ env.notes }}
           draft: false
           prerelease: false
-          token: ${{ secrets.GIHUB_TOKEN2 }}  # Aqui está a mudança
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIHUB_TOKEN2 }}  # Usando o token correto como variável de ambiente
