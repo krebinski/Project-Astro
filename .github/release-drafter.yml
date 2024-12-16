@@ -1,0 +1,54 @@
+name-template: "🚀 Release ${{nextRelease.version}}"
+tag-template: "v${{nextRelease.version}}"
+
+categories:
+  - title: "✨ Features"
+    labels:
+      - "feature"
+      - "enhancement"
+      - "new-feature"
+  - title: "🐛 Bug Fixes"
+    labels:
+      - "bug"
+      - "fix"
+      - "hotfix"
+  - title: "🛠 Improvements & Refactors"
+    labels:
+      - "improvement"
+      - "refactor"
+      - "optimization"
+  - title: "📚 Documentation"
+    labels:
+      - "documentation"
+      - "docs"
+  - title: "🚧 Miscellaneous"
+    labels:
+      - "chore"
+      - "other"
+      - "misc"
+
+change-template: "- ${{change.title}} ([#${{change.number}}](${{change.url}}) by @${{change.author.login}})"
+template: |
+  # 📦 New Release: ${{nextRelease.version}}
+
+  ## Overview
+  This release introduces the following changes:
+  ${{CHANGELOG}}
+
+  ## Highlights
+  - **Features**: A range of new functionalities and enhancements.
+  - **Fixes**: Bugs identified and resolved for improved stability.
+  - **Improvements**: Codebase optimizations and refactoring for better performance.
+
+  ## Changes by Category
+  ${{CHANGELOG}}
+
+  ## Contributors
+  A huge thank you to the amazing contributors who made this release possible:  
+  ${{CONTRIBUTORS}}
+
+  ## Additional Notes
+  - Be sure to update dependencies to stay compatible with this release.
+  - Report issues or suggestions via [GitHub Issues](https://github.com/your-repo/issues).
+
+version-resolver: "auto"
